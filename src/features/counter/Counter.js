@@ -6,41 +6,25 @@ import {
   sellItem,
   selectCount,
   selectItems,
-  selectSalesItems,
-  numOfItemsInStore,
-  numOfAllItems,
 } from './counterSlice';
 import styles from './Counter.module.css';
 
 export function Counter() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
-  const incrementValue = Number(incrementAmount) || 0;
-  
   
   const [priceAmount, setPriceAmount] = useState('');
   const [itemName, setItemName] = useState('');
 
-  const [newPriceAmount, setNewPriceAmount] = useState('');
-  const [changeItemName, setChangeItemName] = useState('');
-  
   const priceValue = Number(priceAmount) || 0;
   const items = useSelector(selectItems);
-  const sales = useSelector(selectSalesItems);
-  const newPriceValue = Number(newPriceAmount) || 0;
   
-  const numItemsInStore = useSelector(numOfItemsInStore);
-  const totalItems = useSelector(numOfAllItems);
-// console.log(numItemsInStore);
   return (
     <div>
-        
-
-      <div >Number of items in store now:{numItemsInStore}</div>
-      <div >The total amount of products that were in the store:{totalItems}</div>
-      <div className={styles.row}>
-      
+      <br></br>
+      <br></br>
+      <br></br>
+      <div className={styles.value}>
         Name:
         <input
             className={styles.textbox}
@@ -63,9 +47,8 @@ export function Counter() {
         </button>
       </div>
 
-      {items.length > 0 ? <div>
-            <div className={styles.row}>
-      
+      {/* {items.length > 0 ? <div> */}
+            {/* <div className={styles.row}>
             Name:
             <input
                 className={styles.textbox}
@@ -86,9 +69,9 @@ export function Counter() {
               >
               Change
             </button>
-          </div>
-      <div className={styles.value}>Items for offer:</div></div> : null}
-      {items.map((i,k) => 
+          </div> */}
+      {/* <div className={styles.value}>Items for offer:</div></div> : null} */}
+      {/* {items.map((i,k) => 
           <div className={styles.row}key={k}>
             <li >
               {`Item: ${i.name} Price: ${i.price}₪ `}
@@ -99,18 +82,7 @@ export function Counter() {
               > Buy Item</button>
             </li>
           </div>
-        )}      
-
-
-        {sales.length > 0 ? <div className={styles.value}>Sales:</div> : null}
-        {sales.map(i => 
-          <div className={styles.row}>
-            <li >
-              {`Item: ${i.name} Sold for:${i.price}₪ `}
-
-            </li>
-          </div>
-        )}   
+        )}       */}
     </div>
   );
 }

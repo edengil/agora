@@ -8,6 +8,8 @@ const initialState = {
   sales: [],
   numOfItemsInStore:0,
   numOfAllItems:0,
+  sumOfSales:0,
+
   status: 'idle',
 };
 
@@ -49,8 +51,15 @@ export const counterSlice = createSlice({
     },
 
     changingPriceByName: (state, action) => {
-    state.items = [...state.items.filter((i) => i.name !== action.payload.name)]
-    state.items.push(action.payload);
+    const index = state.items.findIndex(i => i.name == action.payload.name);
+    if(index === -1){
+      console.log("item not in the store");
+    
+    }else{
+      state.items = [...state.items.filter((i) => i.name !== action.payload.name)]
+      state.items.push(action.payload);
+
+    }
     
       // state.items = [...state.items.map((i) =>{
       //   if( i.name === action.payload.name){
@@ -63,6 +72,7 @@ export const counterSlice = createSlice({
       state.sales.push(action.payload);
       state.items = [...state.items.filter((i) => i.name !== action.payload.name)]
       state.numOfItemsInStore -= 1
+      state.sumOfSales += action.payload.price
     },
 
     increment: (state) => {
@@ -104,6 +114,9 @@ export const selectItems = (state) => state.inventory.items;
 export const selectSalesItems = (state) => state.inventory.sales;
 export const numOfItemsInStore = (state) => state.inventory.numOfItemsInStore
 export const numOfAllItems = (state) => state.inventory.numOfAllItems
+export const sumOfSales = (state) => state.inventory.sumOfSales
+
+
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
